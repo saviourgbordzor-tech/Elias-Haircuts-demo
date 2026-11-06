@@ -648,6 +648,63 @@ svg{max-width:100%;}
 .g5{background-image:linear-gradient(135deg,#C9D0D8,#5C636D);animation-delay:-12s;}
 .g6{background-image:linear-gradient(135deg,#0A4A5C,#0E1116);animation-delay:-15s;}
 
+/* ---------- Testimonials ---------- */
+.testimonials {
+  display: grid;
+  gap: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.testimonial-card {
+  padding: 1.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
+}
+.testimonial-stars {
+  color: var(--ice);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 2px;
+}
+.testimonial-text {
+  font-size: 1.05rem;
+  font-style: italic;
+  color: var(--text-soft);
+  margin-bottom: 1rem;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--chrome-grad);
+  color: var(--bg);
+  display: grid;
+  place-items: center;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+.testimonial-name {
+  margin: 0;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.testimonial-role {
+  margin: 0;
+  font-size: 0.75rem;
+  color: var(--text-mute);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
 /* ---------- About ---------- */
 .about-block{
   position:relative;
@@ -891,6 +948,7 @@ body.has-selection .fab{display:none;}
   .barbers{grid-template-columns:repeat(3,1fr);gap:1rem;}
   .gallery{grid-template-columns:repeat(3,1fr);gap:1rem;}
   .tile{min-height:11rem;}
+  .testimonials{grid-template-columns:repeat(3,1fr);}
 
   .contact-card{grid-template-columns:1fr auto;align-items:center;gap:1.6rem;}
   .contact-title{grid-column:1 / -1;}
@@ -980,9 +1038,15 @@ body.has-selection .fab{display:none;}
   background:radial-gradient(circle,rgba(11,14,18,.08),rgba(11,14,18,0) 70%);
 }
 :root[data-theme="light"] .hero-title{filter:drop-shadow(0 4px 24px rgba(6,122,148,.12));}
+
+/* THE LIGHT MODE WATERMARK FIX */
+:root[data-theme="light"] .hero-clipper {
+  opacity: 0.08; /* Slightly more visible because dark on light */
+}
 :root[data-theme="light"] .hero-clipper svg {
   stroke: var(--ice);
-  opacity: 0.2;
+  /* Swap the neon glow for a crisp, subtle shadow */
+  filter: drop-shadow(0 4px 8px rgba(6, 122, 148, 0.2));
 }
 
 :root[data-theme="light"] .barber-avatar{
@@ -1016,7 +1080,7 @@ body.has-selection .fab{display:none;}
       <li><a href="#menu">Menu</a></li>
       <li><a href="#barbers">Barbers</a></li>
       <li><a href="#work">Work</a></li>
-      <li><a href="#hours">Hours</a></li>
+      <li><a href="#reviews">Reviews</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
 
@@ -1057,15 +1121,11 @@ body.has-selection .fab{display:none;}
     <div class="hero-orb hero-orb--1" aria-hidden="true"></div>
     <div class="hero-orb hero-orb--2" aria-hidden="true"></div>
     
-    <!-- The SVG Barber Clipper Background -->
     <div class="hero-clipper" aria-hidden="true">
       <svg viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
-        <!-- Clipper Body -->
         <path d="M 60 60 h 80 l -12 180 h -56 z" />
         <path d="M 72 240 v 20 a 10 10 0 0 0 10 10 h 36 a 10 10 0 0 0 10 -10 v -20" />
-        <!-- Blade -->
         <path d="M 65 60 l 5 -40 h 60 l 5 40" />
-        <!-- Blade Teeth -->
         <line x1="70" y1="20" x2="70" y2="5" />
         <line x1="80" y1="20" x2="80" y2="5" />
         <line x1="90" y1="20" x2="90" y2="5" />
@@ -1073,9 +1133,7 @@ body.has-selection .fab{display:none;}
         <line x1="110" y1="20" x2="110" y2="5" />
         <line x1="120" y1="20" x2="120" y2="5" />
         <line x1="130" y1="20" x2="130" y2="5" />
-        <!-- Switch -->
         <rect x="80" y="80" width="40" height="40" rx="6" />
-        <!-- Grip Lines -->
         <line x1="68" y1="140" x2="132" y2="140" />
         <line x1="70" y1="160" x2="130" y2="160" />
         <line x1="72" y1="180" x2="128" y2="180" />
@@ -1325,10 +1383,56 @@ body.has-selection .fab{display:none;}
     </div>
   </section>
 
-  <!-- ===================== ABOUT ===================== -->
-  <section class="section section-tint" id="about">
+  <!-- ===================== TESTIMONIALS ===================== -->
+  <section class="section section-tint" id="reviews">
     <div class="wrap">
-      <p class="eyebrow reveal">04 — The Shop</p>
+      <p class="eyebrow reveal">04 — Reviews</p>
+      <h2 class="reveal">What clients say</h2>
+      <p class="lede reveal">Don't just take our word for it.</p>
+
+      <!-- EDIT: testimonials — change the text and names to real reviews later -->
+      <ul class="testimonials">
+        <li class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Elias is the only person I trust with my lineups. Sharp every single time."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">KM</div>
+            <div>
+              <p class="testimonial-name">Kwame M.</p>
+              <p class="testimonial-role">Regular</p>
+            </div>
+          </div>
+        </li>
+        <li class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Clean shop, good conversation, and the fade was exactly what I asked for."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JA</div>
+            <div>
+              <p class="testimonial-name">Japheth A.</p>
+              <p class="testimonial-role">Walk-in</p>
+            </div>
+          </div>
+        </li>
+        <li class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Brought my son here for his first real haircut. Patient and professional."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">NA</div>
+            <div>
+              <p class="testimonial-name">Nana A.</p>
+              <p class="testimonial-role">Parent</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section class="section" id="about">
+    <div class="wrap">
+      <p class="eyebrow reveal">05 — The Shop</p>
       <h2 class="reveal">About</h2>
       <div class="about-block reveal">
         <p>Elias Haircut is a barbershop where we've been cutting fades, shaping beards and keeping lineups crisp for years. Walk in or send a message — the chair's usually ready.</p>
@@ -1337,9 +1441,9 @@ body.has-selection .fab{display:none;}
   </section>
 
   <!-- ===================== HOURS ===================== -->
-  <section class="section" id="hours">
+  <section class="section section-tint" id="hours">
     <div class="wrap">
-      <p class="eyebrow reveal">05 — Hours</p>
+      <p class="eyebrow reveal">06 — Hours</p>
       <h2 class="reveal">Opening hours</h2>
       <p class="lede reveal">Six days a week. Closed Sundays.</p>
 
@@ -1368,9 +1472,9 @@ body.has-selection .fab{display:none;}
   </section>
 
   <!-- ===================== CONTACT ===================== -->
-  <section class="section section-tint" id="contact">
+  <section class="section" id="contact">
     <div class="wrap">
-      <p class="eyebrow reveal">06 — Find Us</p>
+      <p class="eyebrow reveal">07 — Find Us</p>
       <h2 class="reveal">Come through</h2>
       <p class="lede reveal">Walk in, or message us and we'll reply the same day.</p>
 
@@ -1403,6 +1507,8 @@ body.has-selection .fab{display:none;}
     <p class="footer-copy">© 2026 Elias Haircut · Accra</p>
     <!-- EDIT: phone number -->
     <a href="https://wa.me/233246625602?text=Hello%20Elias%20Haircut%2C%20I%20would%20like%20to%20book%20an%20appointment" data-wa-book target="_blank" rel="noopener">Book on WhatsApp</a>
+    <!-- EDIT: your name / website -->
+    <p class="footer-copy" style="margin-top: 1rem; font-size: 0.75rem; opacity: 0.6;">Website by <a href="#" style="color: inherit;">Saviour</a></p>
   </div>
 </footer>
 
